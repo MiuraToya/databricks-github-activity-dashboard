@@ -2,6 +2,8 @@
 
 GitHub のコミット履歴を Databricks 上で取り込み、整形、集計、可視化する学習用サンプルです。
 
+このリポジトリでは、以下の流れを実装するNotebooksやQueryを管理しています。
+
 - GitHub API からコミット情報を取得
 - Bronze / Silver / Gold の形でデータを段階管理
 - Databricks SQL Dashboard で可視化
