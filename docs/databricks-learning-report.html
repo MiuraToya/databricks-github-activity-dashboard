@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Databricks 学習成果報告</title>
+    <style>
+      :root {
+        --bg: #f3f6fb;
+        --card: #ffffff;
+        --text: #14213d;
+        --muted: #4f5d75;
+        --accent: #1b6ef3;
+        --ok: #198754;
+        --line: #d8e1ef;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        color: var(--text);
+        background: linear-gradient(160deg, #eef4ff 0%, #f9fbff 55%, #eefaf5 100%);
+      }
+      .container {
+        max-width: 1040px;
+        margin: 32px auto;
+        padding: 0 20px 40px;
+      }
+      .hero {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(20, 33, 61, 0.06);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+      }
+      .grid {
+        margin-top: 16px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+      .metric {
+        background: #f8fbff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+      }
+      .metric .k {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .metric .v {
+        font-size: 30px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
+      .section {
+        margin-top: 16px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+      p,
+      li {
+        line-height: 1.65;
+      }
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .pill {
+        display: inline-block;
+        background: #eaf2ff;
+        color: #0a4cc5;
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-right: 6px;
+        margin-bottom: 6px;
+      }
+      .flow {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .flow .step {
+        border: 1px solid var(--line);
+        background: #f9fcff;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+      .status {
+        color: var(--ok);
+        font-weight: 700;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 10px 6px;
+        text-align: left;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .foot {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .lead {
+        font-size: 16px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <h1>Databricks 学習成果報告</h1>
+        <p class="subtitle">
+          テーマ: Git User Analytics（GitHubコミット履歴のユーザー単位可視化）
+        </p>
+        <p class="lead">
+          小さな題材を通して、Databricksの売りである「取り込みから可視化までを一つの基盤で回せる感覚」を体験することを狙った。
+        </p>
+        <div style="margin-top: 12px">
+          <span class="pill">Databricks SQL</span>
+          <span class="pill">Notebook</span>
+          <span class="pill">Delta Lake</span>
+          <span class="pill">Jobs</span>
+        </div>
+        <div class="grid">
+          <div class="metric">
+            <div class="k">Bronze rows</div>
+            <div class="v">49</div>
+          </div>
+          <div class="metric">
+            <div class="k">Silver commits</div>
+            <div class="v">49</div>
+          </div>
+          <div class="metric">
+            <div class="k">Silver files</div>
+            <div class="v">228</div>
+          </div>
+          <div class="metric">
+            <div class="k">Gold (daily / hourly / dirs)</div>
+            <div class="v">11 / 19 / 45</div>
+          </div>
+          <div class="metric">
+            <div class="k">Automation</div>
+            <div class="v">Daily Job</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>1. 目的</h2>
+        <p>
+          Databricksの機能を列挙して理解するのではなく、実際に小さなシステムを作りながら「何がDatabricksらしいのか」を体感することを目的とした。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2. まずDatabricksの売りは何か</h2>
+        <ul>
+          <li>データの取り込み、整形、集計、可視化を同じ基盤で扱える。</li>
+          <li>SQLだけでなくNotebook（Python）を同じ流れの中で使える。</li>
+          <li>Bronze / Silver / Goldのように、分析用のレイヤ設計をそのまま実装に落とし込みやすい。</li>
+          <li>最初は手動実行でも、後からJobで自動化しやすい。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>3. 他のツールで同じことをやるなら</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>やりたいこと</th>
+              <th>一般的な構成のイメージ</th>
+              <th>Databricksで今回やったこと</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GitHubからデータ取得</td>
+              <td>別のPythonスクリプトやバッチを用意する</td>
+              <td>Notebook内のPythonでそのまま取得</td>
+            </tr>
+            <tr>
+              <td>データ保管</td>
+              <td>DBやDWHを別途用意する</td>
+              <td>Deltaテーブルにそのまま保存</td>
+            </tr>
+            <tr>
+              <td>整形・集計</td>
+              <td>ETLツールやSQL基盤を別でつなぐ</td>
+              <td>Notebook / SQLで同じ場所で処理</td>
+            </tr>
+            <tr>
+              <td>可視化</td>
+              <td>BIツールに接続してグラフ化する</td>
+              <td>Databricks Dashboardでそのまま表示</td>
+            </tr>
+            <tr>
+              <td>自動化</td>
+              <td>スケジューラやワークフロー基盤を追加する</td>
+              <td>Databricks Jobにまとめられる</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="foot">
+          つまりDatabricksだけでしかできない、というより「分かれていた役割を一つの基盤に寄せやすい」のが売りだと理解した。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>4. AWSでやるならどうなるか</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>処理</th>
+              <th>AWSでよくある構成例</th>
+              <th>今回のDatabricks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GitHub API取得</td>
+              <td>Lambda か ECS でバッチ実行</td>
+              <td>NotebookのPythonで実行</td>
+            </tr>
+            <tr>
+              <td>生データ保存</td>
+              <td>S3</td>
+              <td>Bronze Delta Table</td>
+            </tr>
+            <tr>
+              <td>整形・集計</td>
+              <td>Glue / EMR / Athena</td>
+              <td>Notebook + SQL</td>
+            </tr>
+            <tr>
+              <td>テーブル定義やデータ管理</td>
+              <td>Glue Data Catalog</td>
+              <td>Databricks上でそのまま管理</td>
+            </tr>
+            <tr>
+              <td>可視化</td>
+              <td>QuickSight</td>
+              <td>Databricks Dashboard</td>
+            </tr>
+            <tr>
+              <td>定期実行</td>
+              <td>EventBridge + Step Functions など</td>
+              <td>Databricks Job</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="foot">
+          AWSでも実現できるが、役割ごとにサービスを組み合わせることが多い。今回Databricksを触ってみて、これらを一つの基盤に寄せて考えられる点が分かりやすいと感じた。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>5. 作成したシステム</h2>
+        <div class="flow">
+          <div class="step">GitHub API取得</div>
+          <div class="step">Bronze: raw JSON保存</div>
+          <div class="step">Silver: 正規化・重複排除</div>
+          <div class="step">Gold: 可視化向け集計</div>
+          <div class="step">Dashboard表示</div>
+          <div class="step">Jobで日次実行</div>
+        </div>
+        <p style="margin-top: 12px">
+          Medallion（Bronze/Silver/Gold）で構成し、Notebook実行によりパイプラインを構築した。さらに Databricks Job による日次実行まで設定した。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>6. 実装内容</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>レイヤ</th>
+              <th>テーブル</th>
+              <th>役割</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bronze</td>
+              <td>bronze_git_raw</td>
+              <td>GitHubコミット詳細JSONの生データ保持</td>
+            </tr>
+            <tr>
+              <td>Silver</td>
+              <td>silver_user_commits / silver_user_changed_files</td>
+              <td>分析用の列形式へ整形、重複排除（MERGE）</td>
+            </tr>
+            <tr>
+              <td>Gold</td>
+              <td>gold_user_activity_daily / hourly / top_directories_30d</td>
+              <td>ダッシュボード表示に最適化した集計テーブル</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>7. 可視化結果</h2>
+        <ul>
+          <li>日別コミット数（Daily Commits）</li>
+          <li>時間帯別コミット数（Commits by Hour）</li>
+          <li>30日間の変更ディレクトリTOP10（Top Directories 30d）</li>
+        </ul>
+        <p style="margin-top: 10px">
+          上記3グラフをDatabricks Dashboardで作成し、ユーザー単位で活動傾向を確認できる状態まで到達。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>8. Databricksを触ってみてどうだったか</h2>
+        <ul>
+          <li>
+            第一印象は「BIツールに近い」だったが、実際には可視化よりも前段のデータ処理まで一体で持っているところが印象的だった。
+          </li>
+          <li>
+            GitHub APIの取得、Deltaへの保存、SQLによる集計、ダッシュボード作成までを同じ場所でつなげられたので、「基盤として触る」感覚を持てた。
+          </li>
+          <li>
+            一方で、最初は「UIのどこで何を設定するか」が分かりづらく、特にDashboardのDataset定義とSecrets周りで学習コストを感じた。
+          </li>
+          <li>
+            ただし一度流れを理解すると、レイヤ分割（Bronze/Silver/Gold）やJob化まで自然につながり、運用イメージを持ちやすかった。
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>9. このシステムを作って得た学び</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>観点</th>
+              <th>学び</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>設計</td>
+              <td>小さな題材でもMedallion構成にすると、処理責務と障害切り分けが明確になる。</td>
+            </tr>
+            <tr>
+              <td>実装</td>
+              <td>Notebook + SQLでETLと分析を同時に進められ、試行錯誤のサイクルが速い。</td>
+            </tr>
+            <tr>
+              <td>運用</td>
+              <td>SecretsとJobを使う前提で作ると、手動実行で作った処理をそのまま日次運用に移しやすい。</td>
+            </tr>
+            <tr>
+              <td>比較理解</td>
+              <td>Databricksは「BIツール」単体ではなく、データ基盤の上流から下流までをまとめて扱いやすくする製品だと理解できた。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>10. 現在の状態</h2>
+        <p class="status">データ取り込み・整形・集計・可視化に加え、Databricks Jobによる日次実行まで設定完了。</p>
+        <p class="foot">
+          現在は `ingest -> transform -> aggregate` を Job で日次実行できる状態であり、ダッシュボードの継続更新が可能。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
