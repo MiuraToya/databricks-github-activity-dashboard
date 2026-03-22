@@ -6,17 +6,17 @@
     <title>Databricks 学習成果報告</title>
     <style>
       :root {
-        --bg: #f3f6fb;
+        --bg: #fff8f4;
         --card: #ffffff;
-        --text: #10213f;
-        --muted: #55657f;
-        --accent: #1368e8;
-        --accent-soft: #eaf2ff;
-        --accent-deep: #0d4fb3;
-        --mint-soft: #e9f7f0;
+        --text: #2f1d16;
+        --muted: #7a5a4e;
+        --accent: #ff5f2e;
+        --accent-soft: #fff0ea;
+        --accent-deep: #d9481c;
+        --mint-soft: #fff3eb;
         --warm-soft: #fff4e8;
         --ok: #198754;
-        --line: #d8e1ef;
+        --line: #f1d7cb;
       }
       * {
         box-sizing: border-box;
@@ -26,9 +26,9 @@
         font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at top left, rgba(19, 104, 232, 0.12), transparent 28%),
-          radial-gradient(circle at top right, rgba(25, 135, 84, 0.1), transparent 24%),
-          linear-gradient(160deg, #eef4ff 0%, #f9fbff 55%, #eefaf5 100%);
+          radial-gradient(circle at top left, rgba(255, 95, 46, 0.16), transparent 28%),
+          radial-gradient(circle at top right, rgba(255, 166, 77, 0.16), transparent 24%),
+          linear-gradient(160deg, #fff8f4 0%, #fffdfa 58%, #fff5ef 100%);
       }
       .container {
         max-width: 1080px;
@@ -39,9 +39,9 @@
         position: relative;
         overflow: hidden;
         background:
-          linear-gradient(135deg, rgba(19, 104, 232, 0.08), rgba(19, 104, 232, 0)),
-          linear-gradient(180deg, #ffffff, #f8fbff);
-        border: 1px solid rgba(19, 104, 232, 0.14);
+          linear-gradient(135deg, rgba(255, 95, 46, 0.1), rgba(255, 95, 46, 0)),
+          linear-gradient(180deg, #ffffff, #fff8f4);
+        border: 1px solid rgba(255, 95, 46, 0.18);
         border-radius: 24px;
         padding: 30px;
         box-shadow: 0 18px 50px rgba(16, 33, 63, 0.08);
@@ -54,7 +54,7 @@
         width: 240px;
         height: 240px;
         border-radius: 999px;
-        background: radial-gradient(circle, rgba(19, 104, 232, 0.18), rgba(19, 104, 232, 0));
+        background: radial-gradient(circle, rgba(255, 95, 46, 0.22), rgba(255, 95, 46, 0));
         pointer-events: none;
       }
       h1 {
@@ -76,7 +76,7 @@
       .metric {
         position: relative;
         background: rgba(255, 255, 255, 0.88);
-        border: 1px solid rgba(19, 104, 232, 0.12);
+        border: 1px solid rgba(255, 95, 46, 0.14);
         border-radius: 18px;
         padding: 16px 16px 15px;
         box-shadow: 0 8px 22px rgba(16, 33, 63, 0.05);
@@ -89,7 +89,7 @@
         right: 0;
         height: 4px;
         border-radius: 18px 18px 0 0;
-        background: linear-gradient(90deg, var(--accent), #55b1ff);
+        background: linear-gradient(90deg, var(--accent), #ff9a5c);
       }
       .metric .k {
         color: var(--accent-deep);
@@ -113,7 +113,7 @@
       .section {
         margin-top: 18px;
         background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(16, 33, 63, 0.08);
+        border: 1px solid rgba(255, 95, 46, 0.1);
         border-radius: 22px;
         padding: 24px;
         box-shadow: 0 14px 38px rgba(16, 33, 63, 0.05);
@@ -131,8 +131,8 @@
         width: 10px;
         height: 10px;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--accent), #49a6ff);
-        box-shadow: 0 0 0 6px rgba(19, 104, 232, 0.1);
+        background: linear-gradient(135deg, var(--accent), #ffb16b);
+        box-shadow: 0 0 0 6px rgba(255, 95, 46, 0.12);
         flex: 0 0 auto;
       }
       p,
@@ -145,13 +145,13 @@
       }
       .pill {
         display: inline-block;
-        background: linear-gradient(180deg, #eef5ff, #dfeeff);
-        color: #0a4cc5;
+        background: linear-gradient(180deg, #fff5ef, #ffe6d9);
+        color: var(--accent-deep);
         border-radius: 999px;
         padding: 7px 12px;
         font-size: 12px;
         font-weight: 700;
-        border: 1px solid rgba(19, 104, 232, 0.12);
+        border: 1px solid rgba(255, 95, 46, 0.14);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
         margin-right: 6px;
         margin-bottom: 6px;
@@ -162,8 +162,8 @@
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       }
       .flow .step {
-        border: 1px solid rgba(19, 104, 232, 0.12);
-        background: linear-gradient(180deg, #fbfdff, #f3f8ff);
+        border: 1px solid rgba(255, 95, 46, 0.14);
+        background: linear-gradient(180deg, #fffaf7, #fff1ea);
         border-radius: 14px;
         padding: 12px 14px;
         font-size: 14px;
@@ -182,24 +182,24 @@
         border-spacing: 0;
         margin-top: 10px;
         overflow: hidden;
-        border: 1px solid rgba(16, 33, 63, 0.08);
+        border: 1px solid rgba(255, 95, 46, 0.12);
         border-radius: 16px;
         background: #fff;
       }
       th,
       td {
-        border-bottom: 1px solid rgba(16, 33, 63, 0.08);
+        border-bottom: 1px solid rgba(255, 95, 46, 0.1);
         padding: 12px 12px;
         text-align: left;
         vertical-align: top;
       }
       th {
-        background: linear-gradient(180deg, #f7faff, #eef4ff);
+        background: linear-gradient(180deg, #fff7f2, #ffefe5);
         color: var(--accent-deep);
         font-weight: 700;
       }
       tr:nth-child(even) td {
-        background: rgba(19, 104, 232, 0.02);
+        background: rgba(255, 95, 46, 0.03);
       }
       tr:last-child td {
         border-bottom: none;
@@ -209,7 +209,7 @@
         color: var(--muted);
         font-size: 13px;
         padding: 10px 12px 0;
-        border-top: 1px dashed rgba(16, 33, 63, 0.1);
+        border-top: 1px dashed rgba(255, 95, 46, 0.16);
       }
       .lead {
         max-width: 820px;
