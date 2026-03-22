@@ -8,9 +8,13 @@
       :root {
         --bg: #f3f6fb;
         --card: #ffffff;
-        --text: #14213d;
-        --muted: #4f5d75;
-        --accent: #1b6ef3;
+        --text: #10213f;
+        --muted: #55657f;
+        --accent: #1368e8;
+        --accent-soft: #eaf2ff;
+        --accent-deep: #0d4fb3;
+        --mint-soft: #e9f7f0;
+        --warm-soft: #fff4e8;
         --ok: #198754;
         --line: #d8e1ef;
       }
@@ -21,59 +25,115 @@
         margin: 0;
         font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
         color: var(--text);
-        background: linear-gradient(160deg, #eef4ff 0%, #f9fbff 55%, #eefaf5 100%);
+        background:
+          radial-gradient(circle at top left, rgba(19, 104, 232, 0.12), transparent 28%),
+          radial-gradient(circle at top right, rgba(25, 135, 84, 0.1), transparent 24%),
+          linear-gradient(160deg, #eef4ff 0%, #f9fbff 55%, #eefaf5 100%);
       }
       .container {
-        max-width: 1040px;
-        margin: 32px auto;
-        padding: 0 20px 40px;
+        max-width: 1080px;
+        margin: 36px auto;
+        padding: 0 20px 52px;
       }
       .hero {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 10px 30px rgba(20, 33, 61, 0.06);
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(135deg, rgba(19, 104, 232, 0.08), rgba(19, 104, 232, 0)),
+          linear-gradient(180deg, #ffffff, #f8fbff);
+        border: 1px solid rgba(19, 104, 232, 0.14);
+        border-radius: 24px;
+        padding: 30px;
+        box-shadow: 0 18px 50px rgba(16, 33, 63, 0.08);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -40px;
+        width: 240px;
+        height: 240px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(19, 104, 232, 0.18), rgba(19, 104, 232, 0));
+        pointer-events: none;
       }
       h1 {
-        margin: 0 0 8px;
-        font-size: 28px;
+        margin: 0 0 10px;
+        font-size: 34px;
+        letter-spacing: -0.02em;
       }
       .subtitle {
         margin: 0;
         color: var(--muted);
+        font-size: 15px;
       }
       .grid {
-        margin-top: 16px;
+        margin-top: 20px;
         display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
       .metric {
-        background: #f8fbff;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 14px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(19, 104, 232, 0.12);
+        border-radius: 18px;
+        padding: 16px 16px 15px;
+        box-shadow: 0 8px 22px rgba(16, 33, 63, 0.05);
+      }
+      .metric::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        border-radius: 18px 18px 0 0;
+        background: linear-gradient(90deg, var(--accent), #55b1ff);
       }
       .metric .k {
-        color: var(--muted);
-        font-size: 13px;
+        color: var(--accent-deep);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
       }
       .metric .v {
-        font-size: 30px;
+        font-size: 21px;
         font-weight: 700;
-        margin-top: 4px;
+        margin-top: 8px;
+        line-height: 1.35;
+      }
+      .metric .d {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
       }
       .section {
-        margin-top: 16px;
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 22px;
+        margin-top: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(16, 33, 63, 0.08);
+        border-radius: 22px;
+        padding: 24px;
+        box-shadow: 0 14px 38px rgba(16, 33, 63, 0.05);
       }
       h2 {
-        margin: 0 0 12px;
-        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+      }
+      h2::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), #49a6ff);
+        box-shadow: 0 0 0 6px rgba(19, 104, 232, 0.1);
+        flex: 0 0 auto;
       }
       p,
       li {
@@ -85,54 +145,101 @@
       }
       .pill {
         display: inline-block;
-        background: #eaf2ff;
+        background: linear-gradient(180deg, #eef5ff, #dfeeff);
         color: #0a4cc5;
         border-radius: 999px;
-        padding: 5px 10px;
+        padding: 7px 12px;
         font-size: 12px;
         font-weight: 700;
+        border: 1px solid rgba(19, 104, 232, 0.12);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
         margin-right: 6px;
         margin-bottom: 6px;
       }
       .flow {
-        display: flex;
+        display: grid;
         gap: 10px;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       }
       .flow .step {
-        border: 1px solid var(--line);
-        background: #f9fcff;
-        border-radius: 10px;
-        padding: 10px 12px;
+        border: 1px solid rgba(19, 104, 232, 0.12);
+        background: linear-gradient(180deg, #fbfdff, #f3f8ff);
+        border-radius: 14px;
+        padding: 12px 14px;
         font-size: 14px;
+        font-weight: 700;
+        color: var(--accent-deep);
+        box-shadow: 0 8px 20px rgba(16, 33, 63, 0.04);
       }
       .status {
         color: var(--ok);
         font-weight: 700;
+        font-size: 18px;
       }
       table {
         width: 100%;
-        border-collapse: collapse;
-        margin-top: 8px;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(16, 33, 63, 0.08);
+        border-radius: 16px;
+        background: #fff;
       }
       th,
       td {
-        border-bottom: 1px solid var(--line);
-        padding: 10px 6px;
+        border-bottom: 1px solid rgba(16, 33, 63, 0.08);
+        padding: 12px 12px;
         text-align: left;
+        vertical-align: top;
       }
       th {
-        color: var(--muted);
+        background: linear-gradient(180deg, #f7faff, #eef4ff);
+        color: var(--accent-deep);
         font-weight: 700;
+      }
+      tr:nth-child(even) td {
+        background: rgba(19, 104, 232, 0.02);
+      }
+      tr:last-child td {
+        border-bottom: none;
       }
       .foot {
         margin-top: 14px;
         color: var(--muted);
         font-size: 13px;
+        padding: 10px 12px 0;
+        border-top: 1px dashed rgba(16, 33, 63, 0.1);
       }
       .lead {
+        max-width: 820px;
         font-size: 16px;
         color: var(--muted);
+        line-height: 1.8;
+      }
+      @media (max-width: 720px) {
+        .container {
+          margin: 18px auto;
+          padding: 0 14px 32px;
+        }
+        .hero,
+        .section {
+          padding: 18px;
+          border-radius: 18px;
+        }
+        h1 {
+          font-size: 28px;
+        }
+        h2 {
+          font-size: 19px;
+        }
+        .metric .v {
+          font-size: 18px;
+        }
+        th,
+        td {
+          padding: 10px 10px;
+        }
       }
     </style>
   </head>
@@ -154,24 +261,24 @@
         </div>
         <div class="grid">
           <div class="metric">
-            <div class="k">Bronze rows</div>
-            <div class="v">49</div>
+            <div class="k">1. 取得</div>
+            <div class="v">GitHub API からコミット情報を取得</div>
+            <div class="d">Notebook 上で Python をそのまま使い、データ取得から始められる。</div>
           </div>
           <div class="metric">
-            <div class="k">Silver commits</div>
-            <div class="v">49</div>
+            <div class="k">2. 整形</div>
+            <div class="v">分析しやすい形にデータを整形</div>
+            <div class="d">SQL と Python を同じ基盤で組み合わせて処理できる。</div>
           </div>
           <div class="metric">
-            <div class="k">Silver files</div>
-            <div class="v">228</div>
+            <div class="k">3. 集計</div>
+            <div class="v">日別・時間帯別・ディレクトリ別に集計</div>
+            <div class="d">生データから集計済みデータまで段階的に管理しやすい。</div>
           </div>
           <div class="metric">
-            <div class="k">Gold (daily / hourly / dirs)</div>
-            <div class="v">11 / 19 / 45</div>
-          </div>
-          <div class="metric">
-            <div class="k">Automation</div>
-            <div class="v">Daily Job</div>
+            <div class="k">4. 可視化 / 運用</div>
+            <div class="v">ダッシュボード化し、Jobで日次実行</div>
+            <div class="d">可視化と定期実行まで同じ基盤の中でつなげられる。</div>
           </div>
         </div>
       </section>
@@ -330,7 +437,52 @@
       </section>
 
       <section class="section">
-        <h2>7. 可視化結果</h2>
+        <h2>7. 今回触ったDatabricks機能</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>機能</th>
+              <th>今回やったこと</th>
+              <th>学べたこと</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Notebook</td>
+              <td>PythonでGitHub APIを呼び、ETLを3段に分けて実装</td>
+              <td>SQLだけでなくコード実行も同じ基盤で扱える</td>
+            </tr>
+            <tr>
+              <td>Delta Table</td>
+              <td>Bronze / Silver / Gold の各テーブルを作成</td>
+              <td>生データ、中間データ、集計済みデータを段階的に管理できる</td>
+            </tr>
+            <tr>
+              <td>Databricks SQL</td>
+              <td>テーブル確認、集計結果の確認、ダッシュボード用データの確認</td>
+              <td>処理後のデータ確認と分析を同じ環境で進められる</td>
+            </tr>
+            <tr>
+              <td>Dashboard</td>
+              <td>日別コミット数、時間帯別、ディレクトリTOP10を可視化</td>
+              <td>整形済みテーブルをそのまま可視化につなげられる</td>
+            </tr>
+            <tr>
+              <td>Secrets</td>
+              <td>GitHub PAT を Secret として登録して利用</td>
+              <td>ノートブックに認証情報を直書きせずに使える</td>
+            </tr>
+            <tr>
+              <td>Jobs</td>
+              <td>`ingest -> transform -> aggregate` を日次実行に設定</td>
+              <td>手動で作った処理をそのまま定期運用に移せる</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>8. 可視化結果</h2>
         <ul>
           <li>日別コミット数（Daily Commits）</li>
           <li>時間帯別コミット数（Commits by Hour）</li>
@@ -342,25 +494,29 @@
       </section>
 
       <section class="section">
-        <h2>8. Databricksを触ってみてどうだったか</h2>
+        <h2>9. Job化して分かったこと</h2>
+        <ul>
+          <li>ETLパイプラインと実行スケジュールを同じ製品の中で閉じられるので、AWSで組む場合に比べると、スケジューラやワークフローを別サービスで考えなくてよい点が分かりやすかった。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>10. Databricksを触ってみてどうだったか</h2>
         <ul>
           <li>
             第一印象は「BIツールに近い」だったが、実際には可視化よりも前段のデータ処理まで一体で持っているところが印象的だった。
           </li>
           <li>
-            GitHub APIの取得、Deltaへの保存、SQLによる集計、ダッシュボード作成までを同じ場所でつなげられたので、「基盤として触る」感覚を持てた。
+            GitHub APIの取得、データ保存、SQLによる集計、ダッシュボード作成、Job化までを一連で試せたことで、Databricks上でデータ活用の流れを一通り理解できた。
           </li>
           <li>
-            一方で、最初は「UIのどこで何を設定するか」が分かりづらく、特にDashboardのDataset定義とSecrets周りで学習コストを感じた。
-          </li>
-          <li>
-            ただし一度流れを理解すると、レイヤ分割（Bronze/Silver/Gold）やJob化まで自然につながり、運用イメージを持ちやすかった。
+            一方で、「UIのどこで何を設定するか」が分かりづらく、使い慣れるまでには一定の学習コストを感じた。
           </li>
         </ul>
       </section>
 
       <section class="section">
-        <h2>9. このシステムを作って得た学び</h2>
+        <h2>11. このシステムを作って得た学び</h2>
         <table>
           <thead>
             <tr>
@@ -371,7 +527,7 @@
           <tbody>
             <tr>
               <td>設計</td>
-              <td>小さな題材でもMedallion構成にすると、処理責務と障害切り分けが明確になる。</td>
+              <td>Databricksには、Bronze / Silver / Gold のようにデータを段階的に分けて扱う Medallion Architecture という考え方があることを理解した。</td>
             </tr>
             <tr>
               <td>実装</td>
@@ -379,7 +535,7 @@
             </tr>
             <tr>
               <td>運用</td>
-              <td>SecretsとJobを使う前提で作ると、手動実行で作った処理をそのまま日次運用に移しやすい。</td>
+              <td>Notebookで作った処理を、そのままJobで日次実行に載せられる。</td>
             </tr>
             <tr>
               <td>比較理解</td>
@@ -390,7 +546,7 @@
       </section>
 
       <section class="section">
-        <h2>10. 現在の状態</h2>
+        <h2>12. 現在の状態</h2>
         <p class="status">データ取り込み・整形・集計・可視化に加え、Databricks Jobによる日次実行まで設定完了。</p>
         <p class="foot">
           現在は `ingest -> transform -> aggregate` を Job で日次実行できる状態であり、ダッシュボードの継続更新が可能。
